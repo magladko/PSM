@@ -37,6 +37,9 @@ def main():
     except ValueError:
         print("Number needs to be a positive integer.")
         return 1
+    except IndexError:
+        print("1 program argument needed")
+        return 1
 
     x_list = np.linspace(-10, 10, num=PLOT_RESOLUTION)
 
