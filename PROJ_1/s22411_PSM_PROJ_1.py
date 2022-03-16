@@ -39,6 +39,8 @@ def main():
             print("Illegal statement, enter again")
         except EOFError:
             return 0
+        except KeyboardInterrupt:
+            return 0
 
     # try:
     #     series_len = int(sys.argv[1])
@@ -92,6 +94,8 @@ def main():
             except ValueError:
                 print("Incorrect input.")
             except EOFError:
+                return 0
+            except KeyboardInterrupt:
                 return 0
 
         approx = cos_approx(x, series_len)
