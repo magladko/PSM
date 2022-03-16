@@ -68,6 +68,24 @@ def main():
     axs[1].legend()
     plt.show()
 
+    usr_input = 0
+    print("Type 'x' in input to exit program")
+    while True:
+        x = input("Enter x value: ")
+
+        if x == 'x' or x == 'X':
+            return 0
+
+        try:
+            x = float(x)
+        except ValueError:
+            print("Incorrect input.")
+
+        approx = cos_approx(x, series_len)
+        print(f"cos(x={x}) ~= {approx[0]}\n error <= {approx[1]}\n")
+        approx = sin_approx(x, series_len)
+        print(f"sin(x={x}) ~= {approx[0]}\n error <= {approx[1]}\n")
+
 
 if __name__ == "__main__":
-    main()
+    exit(main())
