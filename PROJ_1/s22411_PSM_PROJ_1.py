@@ -1,14 +1,13 @@
-import sys
 from math import factorial
 
 import matplotlib.pyplot as plt
-import numpy as np
+from numpy import abs, linspace
 
 PLOT_RESOLUTION = 1000
 
 
 def compute_error(x, series_len):
-    return np.abs(x**(series_len+1) / factorial(series_len+1))
+    return abs(x**(series_len+1) / factorial(series_len+1))
 
 
 def sin_approx(x, series_len: int) -> tuple:
@@ -50,7 +49,7 @@ def main():
     #     print("At least 1 program argument needed")
     #     return 1
 
-    x_list = np.linspace(-10, 10, num=PLOT_RESOLUTION)
+    x_list = linspace(-10, 10, num=PLOT_RESOLUTION)
 
     sa = sin_approx(x_list, series_len)
     ca = cos_approx(x_list, series_len)
