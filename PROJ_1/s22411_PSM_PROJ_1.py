@@ -66,17 +66,16 @@ def main():
     axs[1].grid()
 
     # plt.plot(x_list, np.vectorize(math.sin)(x_list))
-    axs[0].plot(x_list, sa[0], label="sinus approximation")
-    axs[1].plot(x_list, ca[0], label="cosine approximation")
+    axs[0].plot(x_list, sa[0], label="sin(x) approximation")
+    axs[1].plot(x_list, ca[0], label="cos(x) approximation")
 
     axs[0].plot(x_list, sa[1], label="max approximation error")
     axs[1].plot(x_list, ca[1], label="max approximation error")
 
     axs[0].legend()
     axs[1].legend()
-    plt.show()
+    plt.show(block=False)
 
-    usr_input = 0
     print("Type 'x' in an input to exit program")
     while True:
         x = input("Enter x value [or x to exit]: ")
@@ -96,4 +95,4 @@ def main():
 
 
 if __name__ == "__main__":
-    exit(main())
+    main()
