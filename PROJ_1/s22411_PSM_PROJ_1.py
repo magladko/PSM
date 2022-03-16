@@ -37,6 +37,8 @@ def main():
             break
         except ValueError:
             print("Illegal statement, enter again")
+        except EOFError:
+            return 0
 
     # try:
     #     series_len = int(sys.argv[1])
@@ -89,6 +91,8 @@ def main():
                 break
             except ValueError:
                 print("Incorrect input.")
+            except EOFError:
+                return 0
 
         approx = cos_approx(x, series_len)
         print(f"cos(x={x}) ~= {approx[0]}\n error <= {approx[1]}\n")
