@@ -78,15 +78,17 @@ def main():
 
     print("Type 'x' in an input to exit program")
     while True:
-        x = input("Enter x value [or x to exit]: ")
+        while True:
+            try:
+                x = input("Enter x value [or x to exit]: ")
 
-        if x == 'x' or x == 'X':
-            return 0
+                if x == 'x' or x == 'X':
+                    return 0
 
-        try:
-            x = float(x)
-        except ValueError:
-            print("Incorrect input.")
+                x = float(x)
+                break
+            except ValueError:
+                print("Incorrect input.")
 
         approx = cos_approx(x, series_len)
         print(f"cos(x={x}) ~= {approx[0]}\n error <= {approx[1]}\n")
