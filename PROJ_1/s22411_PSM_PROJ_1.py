@@ -30,16 +30,25 @@ def cos_approx(x, series_len: int) -> tuple:
 
 
 def main():
-    try:
-        series_len = int(sys.argv[1])
-        if series_len < 1:
-            raise ValueError
-    except ValueError:
-        print("Number needs to be a positive integer.")
-        return 1
-    except IndexError:
-        print("1 program argument needed")
-        return 1
+    while True:
+        try:
+            series_len = int(input("Series length: "))
+            if series_len < 1:
+                raise ValueError
+            break
+        except ValueError:
+            print("Illegal statement, enter again")
+
+    # try:
+    #     series_len = int(sys.argv[1])
+    #     if series_len < 1:
+    #         raise ValueError
+    # except ValueError:
+    #     print("Number needs to be a positive integer.")
+    #     return 1
+    # except IndexError:
+    #     print("At least 1 program argument needed")
+    #     return 1
 
     x_list = np.linspace(-10, 10, num=PLOT_RESOLUTION)
 
@@ -69,9 +78,9 @@ def main():
     plt.show()
 
     usr_input = 0
-    print("Type 'x' in input to exit program")
+    print("Type 'x' in an input to exit program")
     while True:
-        x = input("Enter x value: ")
+        x = input("Enter x value [or x to exit]: ")
 
         if x == 'x' or x == 'X':
             return 0
