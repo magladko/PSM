@@ -45,7 +45,7 @@ def main():
     for i in range(1, 6):
         integral = simpson_integration_modified(lambda t: np.sqrt(t) * np.sin(t), 0, i*0.2, 100)
         print(f"\tfor x={round(i*0.2,1)}: {round(Decimal(integral),16)}")
-
+    print()
     system("PAUSE")
 
 
