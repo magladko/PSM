@@ -35,15 +35,26 @@ def simpson_integration_modified(my_func, a, b, n):
 
 def main():
     print("PROJ_2 @s22411")
+    print("y(x) = ∫(0→x) (√t * sin(t))dt")
+    while True:
+        try:
+            resolution = int(input("Integral compute resolution[1,2,..]: "))
+            if resolution < 1:
+                raise ValueError()
+            break
+        except ValueError:
+            print("Resolution should be a positive integer")
+
+    print()
     print("Metoda trapezów:")
     for i in range(1, 6):
-        integral = trapezoidal_rule(lambda t: np.sqrt(t) * np.sin(t), 0, i*0.2, 100)
+        integral = trapezoidal_rule(lambda t: np.sqrt(t) * np.sin(t), 0, i*0.2, resolution)
         print(f"\tfor x={round(i*0.2,1)}: {round(Decimal(integral),16)}")
     print("\n")
 
     print("Metoda 1/3 Simpsona:")
     for i in range(1, 6):
-        integral = simpson_integration_modified(lambda t: np.sqrt(t) * np.sin(t), 0, i*0.2, 100)
+        integral = simpson_integration_modified(lambda t: np.sqrt(t) * np.sin(t), 0, i*0.2, resolution)
         print(f"\tfor x={round(i*0.2,1)}: {round(Decimal(integral),16)}")
     print()
     system("PAUSE")
