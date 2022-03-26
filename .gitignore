@@ -130,3 +130,6 @@ dmypy.json
 
 # built execs
 output/
+
+# project ignores
+.idea/
