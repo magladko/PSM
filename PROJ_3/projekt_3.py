@@ -24,11 +24,10 @@ Dla wartości początkowej <img src="https://latex.codecogs.com/gif.image?\inlin
 2. <img src="https://latex.codecogs.com/gif.image?\inline&space;\LARGE&space;\dpi{110}\bg{white}\frac{y}{1&plus;y^{2}}dy=\frac{dx}{x^{3}&plus;x}" title="https://latex.codecogs.com/gif.image?\inline \LARGE \dpi{110}\bg{white}\frac{y}{1+y^{2}}dy=\frac{dx}{x^{3}+x}" />
 
 3. <img src="https://latex.codecogs.com/gif.image?\inline&space;\LARGE&space;\dpi{110}\bg{white}\int&space;\frac{y}{1&plus;y^{2}}dy=\int&space;\frac{dx}{x^{3}&plus;x}" title="https://latex.codecogs.com/gif.image?\inline \LARGE \dpi{110}\bg{white}\int \frac{y}{1+y^{2}}dy=\int \frac{dx}{x^{3}+x}" />
-4. <img src="https://latex.codecogs.com/gif.image?\inline&space;\LARGE&space;\dpi{110}\bg{white}\frac{1}{2}ln(\frac{1}{1&plus;y^{2}})&space;=&space;ln(x)-\frac{1}{2}ln(x^{2}&plus;1)&plus;C" title="https://latex.codecogs.com/gif.image?\inline \LARGE \dpi{110}\bg{white}\frac{1}{2}ln(\frac{1}{1+y^{2}}) = ln(x)-\frac{1}{2}ln(x^{2}+1)+C" />
-5. <img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\pm\frac{\sqrt{cx^{2}-x^{2}-1}}{\sqrt{x^{2}&plus;1}}" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\pm\frac{\sqrt{cx^{2}-x^{2}-1}}{\sqrt{x^{2}+1}}" />
-
-6. dla y(1)=1 => C=4 oraz:
-7. <img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\frac{\sqrt{3x^{2}-1}}{\sqrt{x^{2}&plus;1}" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\frac{\sqrt{3x^{2}-1}}{\sqrt{x^{2}+1}" />
+4. <img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}\frac{1}{2}ln(y^{2}&plus;1)&space;=&space;ln(x)-\frac{1}{2}ln(x^{2}&plus;1)&plus;C&space;" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}\frac{1}{2}ln(y^{2}+1) = ln(x)-\frac{1}{2}ln(x^{2}+1)+C " />
+5. <img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\pm&space;\sqrt{\frac{e^{2C}x^{2}}{x^2&plus;1}-1}&space;" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\pm \sqrt{\frac{e^{2C}x^{2}}{x^2+1}-1} " />
+6. dla y(1)=1 => C=ln(2) oraz:
+7. <img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\sqrt{\frac{4x^{2}}{x^2&plus;1}-1}&space;" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\sqrt{\frac{4x^{2}}{x^2+1}-1} " />
 
 #Rozwiązanie numeryczne
 ---
@@ -42,17 +41,12 @@ Dla wartości początkowej <img src="https://latex.codecogs.com/gif.image?\inlin
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from os import system
-
 
 """###Set dx and approximation range"""
 
 #@title Set step { run: "auto" }
-# dx = 0.33 #@param {type:"slider", min:0.01, max:0.5, step:0.01}
-# approx_range = 16 #@param {type:"slider", min:2, max:50, step:1}
-
-dx = float(input("dx: "))
-approx_range = int(input("range: "))
+dx = 0.33 #@param {type:"slider", min:0.01, max:0.5, step:0.01}
+approx_range = 16 #@param {type:"slider", min:2, max:50, step:1}
 
 # Starting point
 x0 = 1
@@ -61,14 +55,14 @@ y0 = 1
 """###Exact function and derivative approximation
 
 Exact function:
-<img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\frac{\sqrt{3x^{2}-1}}{\sqrt{x^{2}&plus;1}" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\frac{\sqrt{3x^{2}-1}}{\sqrt{x^{2}+1}" />
+<img src="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\sqrt{\frac{4x^{2}}{x^2&plus;1}-1}&space;" title="https://latex.codecogs.com/gif.image?\dpi{110}\bg{white}y=\sqrt{\frac{4x^{2}}{x^2+1}-1} " />
 
 Derivative function:
 <img src="https://latex.codecogs.com/gif.image?\dpi{100}\bg{white}f(y,&space;x)=\frac{dx}{dy}=\frac{y^{2}&plus;1}{(x^{2}&plus;1)xy}" title="https://latex.codecogs.com/gif.image?\dpi{100}\bg{white}f(y, x)=\frac{dx}{dy}=\frac{y^{2}+1}{(x^{2}+1)xy}" />
 """
 
 def exact_function(x):
-    return np.sqrt(3*np.power(x, 2)-1)/np.sqrt(np.power(x, 2)+1)
+    return np.sqrt((4*np.power(x, 2))/(np.power(x, 2)+1) - 1)
 
 # derivative approximation
 def approximate_dx_dy(y, x):
@@ -124,7 +118,7 @@ for i in range(0, len(X), (len(X))//2-1):
     t.set_bbox(dict(facecolor='gray', alpha=0.1, edgecolor='black'))
     ax.plot([X[i], X[i]], [Y[i], Y_exact[i]], "--")
 
-plt.show(block=False)
+plt.show()
 
 """##Metoda Rungego-Kutty
 ---
